@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Number CNN Prediction</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Number CNN Prediction</h1>
+
+  <canvas id="canvas" width="280" height="280"></canvas>
+
+  <div id="controls">
+    <button id="clearBtn">Effacer</button>
+    <button id="predictBtn">Prédire</button>
+  </div>
+
+  <div id="class-list">
+    <h2>Classes MNIST</h2>
+    <ul>
+        <li><strong>0</strong> —> Zéro</li>
+        <li><strong>1</strong> —> Un</li>
+        <li><strong>2</strong> —> Deux</li>
+        <li><strong>3</strong> —> Trois</li>
+        <li><strong>4</strong> —> Quatre</li>
+        <li><strong>5</strong> —> Cinq</li>
+        <li><strong>6</strong> —> Six</li>
+        <li><strong>7</strong> —> Sept</li>
+        <li><strong>8</strong> —> Huit</li>
+        <li><strong>9</strong> —> Neuf</li>
+    </ul>
+  </div>
+
+
+  <pre id="result"></pre>
+
+  <!-- ONNX Runtime Web -->
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <!-- Ton script JS -->
+  <script src="script.js"></script>
+</body>
+</html>
