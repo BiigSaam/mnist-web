@@ -46,8 +46,20 @@ predictBtn.addEventListener('click', async () => {
     const output = await session.run(feeds);
     const outputData = output[Object.keys(output)[0]].data;
 
-    const predicted = outputData.indexOf(Math.max(...outputData));
-    resultEl.textContent = `Classe prédite : ${predicted}`;
+    function softmax(arr) {
+    const max = Math.max(...arr);
+    const exps = arr.map(v => Math.exp(v - max));
+    const sum = exps.reduce((a, b) => a + b);
+    return exps.map(v => v / sum);
+  }
+
+  const probabilities = softmax(outputData);
+  const predicted = probabilities.indexOf(Math.max(...probabilities));
+  const confidence = (probabilities[predicted] * 100).toFixed(2);
+
+  resultEl.innerHTML = `
+    <strong>Classe prédite :</strong> ${predicted}<br />
+    <strong>Confiance :</strong> ${confidence}%`;
   } catch (err) {
     console.error(err);
     resultEl.textContent = 'Erreur : ' + err.message;
